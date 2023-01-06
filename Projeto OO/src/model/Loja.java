@@ -8,11 +8,11 @@ public class Loja {
 	private float faturamento;
 	
 	public int calcularQntdFuncionarios() {
-		
+		return 0;
 	}
 	
 	public float calcularFaturamento() {
-		
+		return 0;
 	}
 	
 }

@@ -11,12 +11,12 @@ public class Venda {
 	private String descricao;
 	
 	public int calcularValorTotal() {
-		
-		
+
+		return 0;
 	}
 
 	public int calcularValorParcela() {
-		
+		return 0;
 	}
 
 	

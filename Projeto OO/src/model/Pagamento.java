@@ -11,6 +11,6 @@ public class Pagamento {
 	private float descontoSalario;
 	
 	public float calcularSalarioLiquido(float valorBruto,float comissao,float descontoSalario) {
-		
+		return 0;
 	}
 }

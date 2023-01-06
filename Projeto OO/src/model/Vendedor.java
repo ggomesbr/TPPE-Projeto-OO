@@ -8,11 +8,11 @@ public class Vendedor extends Funcionario {
 	private ArrayList<Venda> vendas;
 	
 	public float calcularValorVendas() {
-		
+		return 0;
 	}
 	
 	public float calcularTotalComissao() {
-		
+		return 0;
 	}
 	
 }

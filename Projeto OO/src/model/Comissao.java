@@ -6,6 +6,6 @@ public class Comissao {
 	
 	public float calcularComissao() {
 		
-		
+		return 0;
 	}
 }
