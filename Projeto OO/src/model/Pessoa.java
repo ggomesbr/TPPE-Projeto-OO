@@ -1,12 +1,28 @@
 package model;
 
 public class Pessoa {
+	// atributos
+	
 	private String email;
 	private String endereco;
 	private String cidade;
 	private String estado;
 	private String cep;
 	private String bairro;
+	
+	// construtor
+	
+	public Pessoa(String email, String endereco, String cidade, String estado, String cep, String bairro) {
+		super();
+		this.email = email;
+		this.endereco = endereco;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.cep = cep;
+		this.bairro = bairro;
+	}
+	
+	// getters and setters
 	
 	public String getEmail() {
 		return email;

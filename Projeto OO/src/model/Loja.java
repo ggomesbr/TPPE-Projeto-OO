@@ -2,6 +2,10 @@ package model;
 
 import java.util.*;
 
+import models.Address;
+import models.Client;
+import models.Payment;
+import models.Product;
 import models.Store;
 
 public class Loja {
@@ -12,7 +16,7 @@ public class Loja {
 	private double faturamento;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Vendedor> vendedores;
-	private ArrayList<Gerente> gerentes;
+	private ArrayList<Administrador> administrador;
 	private ArrayList<Automovel> automoveis;
 	private ArrayList<Venda> vendas;
 	
@@ -23,7 +27,7 @@ public class Loja {
 			instance = new Loja();
 			instance.clientes = new ArrayList<Cliente>();
 			instance.vendedores = new ArrayList<Vendedor>();
-			instance.gerentes = new ArrayList<Gerente>();
+			instance.administrador = new ArrayList<Administrador>();
 			instance.automoveis = new ArrayList<Automovel>();
 			instance.vendas = new ArrayList<Venda>();
 			
@@ -35,7 +39,7 @@ public class Loja {
 	}
 	
 	public void calcularQntdFuncionarios() {
-		this.qntdFuncionarios = vendedores.size() + gerentes.size();
+		this.qntdFuncionarios = vendedores.size() + administrador.size();
 	}
 	
 	// não ta pronto
@@ -48,6 +52,13 @@ public class Loja {
 		this.faturamento = faturamento;
 	}
 
+	  public static void preencherDatabase() {
+		    // instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
+		  	// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep, bairro, nome, login, senha, valorVendas, totalComissao));
+		   
+		      instance.vendedores.add(new Vendedor("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","anamelo","123",5,100));
+	  }
+
 	public static String getNome() {
 		return nome;
 	}
@@ -56,7 +67,7 @@ public class Loja {
 		Loja.nome = nome;
 	}
 
-	public String getEndereco() {
+	public static String getEndereco() {
 		return endereco;
 	}
 
@@ -64,7 +75,7 @@ public class Loja {
 		Loja.endereco = endereco;
 	}
 
-	public String getTelefone() {
+	public static String getTelefone() {
 		return telefone;
 	}
 
@@ -84,7 +95,7 @@ public class Loja {
 		return faturamento;
 	}
 
-	public void setFaturamento(float faturamento) {
+	public void setFaturamento(double faturamento) {
 		this.faturamento = faturamento;
 	}
 
@@ -104,12 +115,12 @@ public class Loja {
 		this.vendedores = vendedores;
 	}
 
-	public ArrayList<Gerente> getGerentes() {
-		return gerentes;
+	public ArrayList<Administrador> getAdministrador() {
+		return administrador;
 	}
 
-	public void setGerentes(ArrayList<Gerente> gerentes) {
-		this.gerentes = gerentes;
+	public void setAdministrador(ArrayList<Administrador> administrador) {
+		this.administrador = administrador;
 	}
 
 	public ArrayList<Automovel> getAutomoveis() {
@@ -131,5 +142,6 @@ public class Loja {
 	public static void setInstance(Loja instance) {
 		Loja.instance = instance;
 	}
-	
+
+	  
 }

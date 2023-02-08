@@ -8,6 +8,7 @@ public class Venda {
 	private String tipoPagamento;
 	private int qntdParcelas;
 	private String descricao;
+	private StatusVenda status;
 	private static final double TAXA_PARCELA = 0.10;
 	
 	public Venda(Date dataPedido, Date dataEntrega, double valorTotal, String tipoPagamento, int qntdParcelas,
@@ -19,6 +20,8 @@ public class Venda {
 		this.tipoPagamento = tipoPagamento;
 		this.qntdParcelas = qntdParcelas;
 		this.descricao = descricao;
+		status = StatusVenda.PENDENTE;
+		
 	}
 	
 	public double calcularValorTotal() {
