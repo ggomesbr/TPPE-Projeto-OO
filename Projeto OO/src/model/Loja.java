@@ -16,7 +16,7 @@ public class Loja {
 	private double faturamento;
 	private ArrayList<Cliente> clientes;
 	private ArrayList<Vendedor> vendedores;
-	private ArrayList<Administrador> administrador;
+	private ArrayList<Administrador> administradores;
 	private ArrayList<Automovel> automoveis;
 	private ArrayList<Venda> vendas;
 	
@@ -27,7 +27,7 @@ public class Loja {
 			instance = new Loja();
 			instance.clientes = new ArrayList<Cliente>();
 			instance.vendedores = new ArrayList<Vendedor>();
-			instance.administrador = new ArrayList<Administrador>();
+			instance.administradores = new ArrayList<Administrador>();
 			instance.automoveis = new ArrayList<Automovel>();
 			instance.vendas = new ArrayList<Venda>();
 			
@@ -39,7 +39,7 @@ public class Loja {
 	}
 	
 	public void calcularQntdFuncionarios() {
-		this.qntdFuncionarios = vendedores.size() + administrador.size();
+		this.qntdFuncionarios = vendedores.size() + administradores.size();
 	}
 	
 	// não ta pronto
@@ -115,12 +115,12 @@ public class Loja {
 		this.vendedores = vendedores;
 	}
 
-	public ArrayList<Administrador> getAdministrador() {
-		return administrador;
+	public ArrayList<Administrador> getAdministradores() {
+		return administradores;
 	}
 
-	public void setAdministrador(ArrayList<Administrador> administrador) {
-		this.administrador = administrador;
+	public void setAdministradores(ArrayList<Administrador> administrador) {
+		this.administradores = administrador;
 	}
 
 	public ArrayList<Automovel> getAutomoveis() {
