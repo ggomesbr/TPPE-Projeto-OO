@@ -4,6 +4,8 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -81,12 +83,19 @@ public class MainView implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == createAdminButton) {
-			
+			CreateAdmin administrador = new CreateAdmin();
+			administrador.getFrame().setVisible(true);
+			frame.dispose();
 		}
 		if (e.getSource() == createLogoutButton) {
 			System.exit(0);
 		}
 	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
 	}
 	
 

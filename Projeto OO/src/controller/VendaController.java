@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.Administrador;
 import model.Loja;
 import model.Venda;
 

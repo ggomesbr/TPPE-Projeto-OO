@@ -1,21 +1,25 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class CreateAdmin {
+import controller.AdministradorController;
+import controller.VendedorController;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class CreateAdmin implements ActionListener {
 
 	private JFrame frame;
-	private JTextField nomeInput;
+	private JTextField nomeField;
 	private JLabel nomeLabel;
 	private JLabel emailLabel;
 	private JLabel enderecoLabel;
@@ -26,53 +30,44 @@ public class CreateAdmin {
 	private JLabel loginLabel;
 	private JLabel senhaLabel;
 	private JButton criarAdministrador;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField cidadeField;
+	private JTextField estadoField;
+	private JTextField enderecoField;
+	private JTextField emailField;
+	private JTextField bairroField;
+	private JTextField loginField;
+	private JTextField senhaField;
+	private JTextField cepField;
+	private JButton voltarButton;
+	private AdministradorController administradorController;
+	private VendedorController vendedorController;
+	private int criarADM;
+	private JLabel obrigatoriedadeLabel;
+	private JLabel lblNewLabel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateAdmin window = new CreateAdmin();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
 	public CreateAdmin() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+		AdministradorController administradorController = new AdministradorController();
+		this.administradorController = administradorController;
+		VendedorController vendedorController = new VendedorController();
+		this.vendedorController = vendedorController;
+		
+		final boolean isFirstTime = administradorController.readAllAdmins().isEmpty();
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		nomeInput = new JTextField();
-		nomeInput.setColumns(10);
+		nomeField = new JTextField();
+		nomeField.setColumns(10);
 		
-		nomeLabel = new JLabel("Nome");
+		nomeLabel = new JLabel("Nome*");
 		nomeLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		emailLabel = new JLabel("Email");
+		emailLabel = new JLabel("Email*");
 		emailLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		enderecoLabel = new JLabel("Endereço");
@@ -90,109 +85,225 @@ public class CreateAdmin {
 		bairroLabel = new JLabel("Bairro");
 		bairroLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		loginLabel = new JLabel("Login");
+		loginLabel = new JLabel("Login*");
 		loginLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		senhaLabel = new JLabel("Senha");
+		senhaLabel = new JLabel("Senha*");
 		senhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		criarAdministrador = new JButton("Criar Administrador");
+		criarAdministrador.addActionListener(this);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		cidadeField = new JTextField();
+		cidadeField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		estadoField = new JTextField();
+		estadoField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		enderecoField = new JTextField();
+		enderecoField.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		emailField = new JTextField();
+		emailField.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		bairroField = new JTextField();
+		bairroField.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		loginField = new JTextField();
+		loginField.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		senhaField = new JPasswordField();
+		senhaField.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
+		cepField = new JTextField();
+		cepField.setColumns(10);
+		
+		voltarButton = new JButton("Voltar");
+		voltarButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (isFirstTime) {
+					MainView mainView = new MainView();
+					mainView.getFrame().setVisible(true);
+					frame.dispose();
+				}
+				else {
+					MenuView menuAdminView = new MenuView();
+					menuAdminView.getFrame().setVisible(true);
+					frame.dispose();
+				}
+			}
+		});
+		
+		obrigatoriedadeLabel = new JLabel("Campos com * são obrigatórios");
+		
+		lblNewLabel = new JLabel("Preencha os campos do Administrador:");
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 32));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 827, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addComponent(obrigatoriedadeLabel))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(56)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(emailLabel)
-						.addComponent(nomeLabel)
-						.addComponent(enderecoLabel)
-						.addComponent(nomeInput, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+					.addComponent(nomeLabel)
+					.addGap(215)
+					.addComponent(cidadeLabel)
+					.addGap(207)
+					.addComponent(estadoLabel))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addComponent(nomeField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 					.addGap(131)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(criarAdministrador)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(bairroLabel)
-								.addComponent(cidadeLabel)
-								.addComponent(loginLabel)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-							.addPreferredGap(ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(cepLabel)
-								.addComponent(senhaLabel)
-								.addComponent(estadoLabel)
-								.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-							.addGap(75))))
+					.addComponent(cidadeField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(120)
+					.addComponent(estadoField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addComponent(enderecoLabel)
+					.addGap(201)
+					.addComponent(bairroLabel)
+					.addGap(213)
+					.addComponent(cepLabel))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addComponent(enderecoField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(131)
+					.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(120)
+					.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addComponent(emailLabel)
+					.addGap(220)
+					.addComponent(loginLabel)
+					.addGap(207)
+					.addComponent(senhaLabel))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addComponent(emailField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(131)
+					.addComponent(loginField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+					.addGap(120)
+					.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(244)
+					.addComponent(criarAdministrador)
+					.addGap(18)
+					.addComponent(voltarButton))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGap(6)
+					.addComponent(lblNewLabel)
+					.addGap(6)
+					.addComponent(obrigatoriedadeLabel)
+					.addGap(23)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(nomeLabel)
 						.addComponent(cidadeLabel)
 						.addComponent(estadoLabel))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(nomeInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(113)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cepLabel)
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(nomeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cidadeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(estadoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(75)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(enderecoLabel)
-						.addComponent(bairroLabel))
-					.addGap(2)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(85)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(senhaLabel)
+						.addComponent(bairroLabel)
+						.addComponent(cepLabel))
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(enderecoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(68)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(emailLabel)
 						.addComponent(loginLabel)
-						.addComponent(emailLabel))
-					.addGap(2)
+						.addComponent(senhaLabel))
+					.addGap(6)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(loginField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(86)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(108)
-					.addComponent(criarAdministrador)
-					.addGap(35))
+						.addComponent(criarAdministrador)
+						.addComponent(voltarButton)))
 		);
 		frame.getContentPane().setLayout(groupLayout);
+		
+
+	}
+
+	
+		public JFrame getFrame() {
+		    return frame;
+		  }
+
+
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource() == criarAdministrador) {
+		        String nome = nomeField.getText();
+		        String email = emailField.getText();
+		        String login = String.valueOf(senhaField.getText());
+		        String senha = senhaField.getText();
+		        String endereco = enderecoField.getText();
+		        String cidade = cidadeField.getText();
+		        String estado =estadoField.getText();
+		        String cep = cepField.getText();
+		        String bairro = bairroField.getText();
+		        
+		        criarADM = verificarExistencia(nome,login,senha,email);
+		        
+
+		        switch (criarADM) {
+					case 1:
+						JOptionPane.showMessageDialog(null, "Administrador já existe!");
+						break;
+					case 2:
+						JOptionPane.showMessageDialog(null, "Vendedor já existe!");
+						break;
+					case 3:
+						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,login,senha);
+						JOptionPane.showMessageDialog(null, "Administrador criado com sucesso!");
+						break;
+					case 4:
+						JOptionPane.showMessageDialog(null, "Preencha todos os dados!");
+						break;
+				}
+		        
+
+
+		      }
+			if (e.getSource() == voltarButton) {
+				
+			}
+			
+		}
+	
+	public int verificarExistencia(String nome, String login, String senha, String email) {
+        for (int i = 0; i < administradorController.readAllAdmins().size(); i++) {
+        	if(email.equalsIgnoreCase(administradorController.readAllAdmins().get(i).getEmail())) {
+        		return 1;
+        	}
+        }
+        
+        for (int i = 0; i < vendedorController.readAllVendedores().size(); i++) {
+        	if(email.equalsIgnoreCase(vendedorController.readAllVendedores().get(i).getEmail())) {
+        		return 2;
+        	}
+        }
+        if(nome.trim().isEmpty() || email.trim().isEmpty() || login.trim().isEmpty() || senha.trim().isEmpty()) {
+        	return 4;
+        }
+        
+        return 3;
 	}
 }
