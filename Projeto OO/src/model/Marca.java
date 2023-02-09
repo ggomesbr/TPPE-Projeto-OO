@@ -1,6 +1,10 @@
 package model;
 
 public class Marca {
-
-	private String descricao;
+	private String nome;
+	
+	public Marca(String nome) {
+		this.nome = nome;
+	}
+	
 }

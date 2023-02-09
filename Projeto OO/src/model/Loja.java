@@ -19,6 +19,7 @@ public class Loja {
 	private ArrayList<Administrador> administradores;
 	private ArrayList<Automovel> automoveis;
 	private ArrayList<Venda> vendas;
+	private ArrayList<Marca> marcas;
 	
 	private static Loja instance = null;
 	
@@ -30,6 +31,7 @@ public class Loja {
 			instance.administradores = new ArrayList<Administrador>();
 			instance.automoveis = new ArrayList<Automovel>();
 			instance.vendas = new ArrayList<Venda>();
+			instance.marcas = new ArrayList<Marca>();
 			
 			Loja.setNome("Concessionaria FGLADA");
 			Loja.setEndereco("Avenida Abada Ferreira numero 420");
@@ -57,6 +59,22 @@ public class Loja {
 		  	// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep, bairro, nome, login, senha, valorVendas, totalComissao));
 		   
 		      instance.vendedores.add(new Vendedor("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","anamelo","123",5,100));
+		      instance.administradores.add(new Administrador("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","anamelo","123"));
+		      
+		      
+		      //instancia marcas
+		      instance.marcas.add(new Marca("Toyota"));
+		      instance.marcas.add(new Marca("Volkswagen"));
+		      instance.marcas.add(new Marca("Mercedes-Benz"));
+		      instance.marcas.add(new Marca("Ford"));
+		      instance.marcas.add(new Marca("BMW"));
+		      instance.marcas.add(new Marca("General Motors"));
+		      instance.marcas.add(new Marca("Stellantis"));
+		      instance.marcas.add(new Marca("Honda"));
+		      instance.marcas.add(new Marca("Mitsubishi"));
+		      instance.marcas.add(new Marca("Hyundai"));
+		      
+		      
 	  }
 
 	public static String getNome() {

@@ -12,6 +12,10 @@ public class AdministradorController {
 		this.database = Loja.getInstance();
 	}
 	
+	
+	// se der tempo fazer verificações 
+	
+	
 	public void createAdmin(String email, String endereco, String cidade, String estado, String cep, String bairro,
 			String nome, String login, String senha) {
 		Administrador admin = new Administrador(email,endereco,cidade,estado,cep,bairro,nome,login,senha);
