@@ -5,10 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import model.Administrador;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AdministradorView {
 
-	private JFrame frame;
+	private JFrame frmTelaDeAdministrador;
 
 
 	/**
@@ -23,13 +32,58 @@ public class AdministradorView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTelaDeAdministrador = new JFrame();
+		frmTelaDeAdministrador.setTitle("TELA DE ADMINISTRADOR");
+		frmTelaDeAdministrador.setBounds(100, 100, 450, 300);
+		frmTelaDeAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		frmTelaDeAdministrador.getContentPane().add(panel, BorderLayout.CENTER);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{89, 89, 0};
+		gbl_panel.rowHeights = new int[]{23, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		JButton btnAutomoveis = new JButton("Automoveis");
+		btnAutomoveis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AutomovelView automovelView = new AutomovelView();
+				automovelView.getFrame().setVisible(true);
+				frmTelaDeAdministrador.dispose();
+			}
+		});
+		
+		GridBagConstraints gbc_btnAutomoveis = new GridBagConstraints();
+		gbc_btnAutomoveis.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAutomoveis.gridx = 0;
+		gbc_btnAutomoveis.gridy = 0;
+		panel.add(btnAutomoveis, gbc_btnAutomoveis);
+		
+		JButton btnVendedores = new JButton("Vendedores");
+		btnVendedores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdmVendedoresView admVendedoresView = new AdmVendedoresView();
+				admVendedoresView.getFrame().setVisible(true);
+				frmTelaDeAdministrador.dispose();
+			}
+		});
+		
+		GridBagConstraints gbc_btnVendedores = new GridBagConstraints();
+		gbc_btnVendedores.gridx = 1;
+		gbc_btnVendedores.gridy = 0;
+		panel.add(btnVendedores, gbc_btnVendedores);
 	}
 	
 	public JFrame getFrame() {
-	    return frame;
+	    return frmTelaDeAdministrador;
 	  }
+	
+	public static void main(String[] args) {
+		AdministradorView window = new AdministradorView(null);
+		window.frmTelaDeAdministrador.setVisible(true);
+		
 
+	}
 }
