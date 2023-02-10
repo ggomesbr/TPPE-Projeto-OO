@@ -17,8 +17,8 @@ public class AdministradorController {
 	
 	
 	public void createAdmin(String email, String endereco, String cidade, String estado, String cep, String bairro,
-			String nome, String senha) {
-		Administrador admin = new Administrador(email,endereco,cidade,estado,cep,bairro,nome,senha);
+			String nome, String senha,String telefone) {
+		Administrador admin = new Administrador(email,endereco,cidade,estado,cep,bairro,nome,senha,telefone);
 		this.database.getAdministradores().add(admin);
 	}
 	

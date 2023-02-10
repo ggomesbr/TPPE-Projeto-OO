@@ -6,7 +6,7 @@ public class Automovel {
 	private int portas;
 	private String combustivel;
 	private String chassi;
-	private float valor;
+	private float valor_fabrica;
 	private String ano_fabricado;
 	private Modelo modelo;
 	private Marca marca;

@@ -21,21 +21,22 @@ import java.awt.Insets;
 
 public class AutomovelView {
 
-	private JFrame frmTelaDeAutomoveis;
+	private JFrame frame;
 
 
 	/**
 	 * Create the application.
 	 */
 	public AutomovelView() {
-		frmTelaDeAutomoveis = new JFrame();
-		frmTelaDeAutomoveis.setTitle("TELA DE AUTOMOVEIS");
-		frmTelaDeAutomoveis.setBounds(100, 100, 551, 373);
-		frmTelaDeAutomoveis.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmTelaDeAutomoveis.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame = new JFrame();
+		frame.setTitle("TELA DE AUTOMOVEIS");
+		frame.setBounds(100, 100, 551, 373);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		frmTelaDeAutomoveis.getContentPane().add(panel);
+		frame.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{115, 115, 129, 0};
 		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -90,12 +91,12 @@ public class AutomovelView {
 
 
 	public JFrame getFrame() {
-		return frmTelaDeAutomoveis;
+		return frame;
 	}
 
 
 	public void setFrame(JFrame frame) {
-		this.frmTelaDeAutomoveis = frame;
+		this.frame = frame;
 	}
 
 

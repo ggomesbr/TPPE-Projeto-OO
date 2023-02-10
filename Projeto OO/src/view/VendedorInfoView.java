@@ -1,29 +1,24 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import model.Vendedor;
 
-public class CreateVenda {
+public class VendedorInfoView {
 
 	private JFrame frame;
 
 
-
-	/**
-	 * Create the application.
-	 */
-	public CreateVenda(Vendedor vendedor) {
+	public VendedorInfoView(Vendedor selectedVendedor) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 
-	public JFrame getFrame() {
+	
+	public JFrame getFrame(){
 		return frame;
 	}
+
 }

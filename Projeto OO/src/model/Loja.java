@@ -2,11 +2,6 @@ package model;
 
 import java.util.*;
 
-import models.Address;
-import models.Client;
-import models.Payment;
-import models.Product;
-import models.Store;
 
 public class Loja {
 	private static String nome;
@@ -45,23 +40,22 @@ public class Loja {
 	}
 	
 	// não ta pronto
-	public void calcularFaturamento() {
-		double faturamento = 0 ;
-		for (int i = 0; i < vendas.size(); i++) {
-			faturamento += vendas.get(i).getValorTotal() - vendas.get(i).getComissao();
-			
-		}
-		this.faturamento = faturamento;
-	}
+	/*
+	 * public void calcularFaturamento() { double faturamento = 0 ; for (int i = 0;
+	 * i < vendas.size(); i++) { faturamento += vendas.get(i).getValorTotal() -
+	 * vendas.get(i).getComissao();
+	 * 
+	 * } this.faturamento = faturamento; }
+	 */
 
 	  public static void preencherDatabase() {
 		    // instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
 		  	// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep, bairro, nome, login, senha, valorVendas, totalComissao));
 		   
-		      instance.vendedores.add(new Vendedor("t", "endereco", "cidade","estado", "cep","bairro", "t","t", 0,0));
-		      instance.administradores.add(new Administrador("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","123"));
+		      instance.vendedores.add(new Vendedor("emmanuelbarros@gmail.com", "rua dos bobos numero 0", "gurupi","TO", "77400000","centro", "Emmanuel Barros","123", 0,0,"61xxxxxxxx"));
+		      instance.administradores.add(new Administrador("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","123","61xxxxxxxx"));
 		      
-		      
+
 		      //instancia marcas
 		      instance.marcas.add(new Marca("Toyota"));
 		      instance.marcas.add(new Marca("Volkswagen"));
