@@ -79,9 +79,9 @@ public class LoginView implements ActionListener {
 		emailField = new JTextField();
 		emailField.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("senha:");
+		lblNewLabel_1 = new JLabel("Senha:");
 		
-		lblNewLabel = new JLabel("e-mail:");
+		lblNewLabel = new JLabel("E-mail:");
 		
 		LoginLabel = new JLabel("Login");
 		LoginLabel.setFont(new Font("Arial Unicode MS", Font.PLAIN, 38));

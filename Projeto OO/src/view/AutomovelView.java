@@ -38,9 +38,9 @@ public class AutomovelView {
 		frmTelaDeAutomoveis.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{115, 115, 129, 0};
-		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{23, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JButton btnCriarAuto = new JButton("Criar Automóvel");
@@ -73,11 +73,19 @@ public class AutomovelView {
 		JButton btnNewButton_3 = new JButton("Remover Automóvel");
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_3.anchor = GridBagConstraints.NORTH;
 		gbc_btnNewButton_3.gridx = 1;
 		gbc_btnNewButton_3.gridy = 6;
 		panel.add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		GridBagConstraints gbc_btnVoltar = new GridBagConstraints();
+		gbc_btnVoltar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnVoltar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnVoltar.gridx = 1;
+		gbc_btnVoltar.gridy = 7;
+		panel.add(btnVoltar, gbc_btnVoltar);
 	}
 
 

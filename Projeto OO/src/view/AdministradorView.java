@@ -40,10 +40,10 @@ public class AdministradorView {
 		JPanel panel = new JPanel();
 		frmTelaDeAdministrador.getContentPane().add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{89, 89, 0};
-		gbl_panel.rowHeights = new int[]{23, 0};
-		gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[]{89, 0, 89, 0};
+		gbl_panel.rowHeights = new int[]{0, 23, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		JButton btnAutomoveis = new JButton("Automoveis");
@@ -56,14 +56,15 @@ public class AdministradorView {
 		});
 		
 		GridBagConstraints gbc_btnAutomoveis = new GridBagConstraints();
-		gbc_btnAutomoveis.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAutomoveis.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAutomoveis.gridx = 0;
-		gbc_btnAutomoveis.gridy = 0;
+		gbc_btnAutomoveis.gridy = 1;
 		panel.add(btnAutomoveis, gbc_btnAutomoveis);
 		
 		JButton btnVendedores = new JButton("Vendedores");
 		btnVendedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				AdmVendedoresView admVendedoresView = new AdmVendedoresView();
 				admVendedoresView.getFrame().setVisible(true);
 				frmTelaDeAdministrador.dispose();
@@ -71,9 +72,24 @@ public class AdministradorView {
 		});
 		
 		GridBagConstraints gbc_btnVendedores = new GridBagConstraints();
-		gbc_btnVendedores.gridx = 1;
-		gbc_btnVendedores.gridy = 0;
+		gbc_btnVendedores.insets = new Insets(0, 0, 5, 0);
+		gbc_btnVendedores.gridx = 2;
+		gbc_btnVendedores.gridy = 1;
 		panel.add(btnVendedores, gbc_btnVendedores);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginView loginView = new LoginView();
+				loginView.getFrame().setVisible(true);
+				frmTelaDeAdministrador.dispose();
+			}
+		});
+		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
+		gbc_btnLogout.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLogout.gridx = 1;
+		gbc_btnLogout.gridy = 2;
+		panel.add(btnLogout, gbc_btnLogout);
 	}
 	
 	public JFrame getFrame() {
