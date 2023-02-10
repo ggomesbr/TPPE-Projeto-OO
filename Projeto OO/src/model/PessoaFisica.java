@@ -20,5 +20,8 @@ public class PessoaFisica extends Pessoa {
 	public String getCpf() {
 		return cpf;
 	}
-
+	
+	public String toString() {
+		return this.getNome();
+	}
 }

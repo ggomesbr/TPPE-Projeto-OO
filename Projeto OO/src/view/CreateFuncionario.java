@@ -4,18 +4,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import model.Administrador;
-
-public class AdministradorView {
+public class CreateFuncionario {
 
 	private JFrame frame;
 
 
+
 	/**
 	 * Create the application.
-	 * @param administrador 
 	 */
-	public AdministradorView(Administrador administrador) {
+	public CreateFuncionario() {
 		initialize();
 	}
 

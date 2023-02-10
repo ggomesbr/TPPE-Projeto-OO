@@ -20,7 +20,7 @@ public class VendedorController {
 	
 	public void createVendedor(String email, String endereco, String cidade, String estado, String cep, String bairro, String nome,
 			String login, String senha) {
-		Vendedor vendedor = new Vendedor(email,endereco,cidade,estado,cep,bairro,nome,login,senha,0,0);
+		Vendedor vendedor = new Vendedor(email,endereco,cidade,estado,cep,bairro,nome,senha,0,0);
 		this.database.getVendedores().add(vendedor);
 	}
 	
@@ -55,6 +55,17 @@ public class VendedorController {
 	    }
 	    return null;
 
+	}
+	
+	public boolean existeVendedor(String email) {
+		
+		for (Vendedor vendedor : this.database.getVendedores()) {
+		      if (vendedor.getEmail().equals(email)) {
+		        return true;
+		        
+		      }
+		    }
+		    return false;
 	}
 	
 	  public boolean login(String email, String senha) {

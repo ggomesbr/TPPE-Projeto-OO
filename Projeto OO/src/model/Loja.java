@@ -58,8 +58,8 @@ public class Loja {
 		    // instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
 		  	// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep, bairro, nome, login, senha, valorVendas, totalComissao));
 		   
-		      instance.vendedores.add(new Vendedor("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","anamelo","123",5,100));
-		      instance.administradores.add(new Administrador("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","anamelo","123"));
+		      instance.vendedores.add(new Vendedor("t", "endereco", "cidade","estado", "cep","bairro", "t","t", 0,0));
+		      instance.administradores.add(new Administrador("anamelo@gmail.com","rua dos bobos numero 0","gama city","DF","77400000","Ponte alta","Ana Melo","123"));
 		      
 		      
 		      //instancia marcas

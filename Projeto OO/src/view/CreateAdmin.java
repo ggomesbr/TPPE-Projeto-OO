@@ -6,15 +6,16 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
 import controller.AdministradorController;
 import controller.VendedorController;
+import model.Loja;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class CreateAdmin implements ActionListener {
 
@@ -34,7 +35,6 @@ public class CreateAdmin implements ActionListener {
 	private JTextField enderecoField;
 	private JTextField emailField;
 	private JTextField bairroField;
-	private JTextField senhaField;
 	private JTextField cepField;
 	private JButton voltarButton;
 	private AdministradorController administradorController;
@@ -43,6 +43,9 @@ public class CreateAdmin implements ActionListener {
 	private JLabel obrigatoriedadeLabel;
 	private JLabel lblNewLabel;
 	boolean isFirstTime;
+	private JPasswordField senhaField;
+	private JLabel nomeLojaLabel;
+	private JTextField nomeLojaField;
 
 	/**
 	 * Create the application.
@@ -104,9 +107,6 @@ public class CreateAdmin implements ActionListener {
 		bairroField = new JTextField();
 		bairroField.setColumns(10);
 		
-		senhaField = new JTextField();
-		senhaField.setColumns(10);
-		
 		cepField = new JTextField();
 		cepField.setColumns(10);
 		
@@ -119,8 +119,8 @@ public class CreateAdmin implements ActionListener {
 					frame.dispose();
 				}
 				else {
-					MenuView menuAdminView = new MenuView();
-					menuAdminView.getFrame().setVisible(true);
+					LoginView loginView = new LoginView();
+					loginView.getFrame().setVisible(true);
 					frame.dispose();
 				}
 			}
@@ -130,6 +130,15 @@ public class CreateAdmin implements ActionListener {
 		
 		lblNewLabel = new JLabel("Preencha os campos do Administrador:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 32));
+		
+		senhaField = new JPasswordField();
+		
+		nomeLojaLabel = new JLabel("Nome Loja");
+		nomeLojaLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		nomeLojaField = new JTextField();
+		nomeLojaField.setText("Concessionaria FGLADA");
+		nomeLojaField.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -161,13 +170,6 @@ public class CreateAdmin implements ActionListener {
 					.addGap(213)
 					.addComponent(cepLabel))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(56)
-					.addComponent(enderecoField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-					.addGap(131)
-					.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-					.addGap(120)
-					.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(244)
 					.addComponent(criarAdministrador)
 					.addGap(18)
@@ -176,11 +178,18 @@ public class CreateAdmin implements ActionListener {
 					.addGap(56)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(emailField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+						.addComponent(enderecoField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
 						.addComponent(emailLabel))
-					.addGap(131)
+					.addGap(133)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(senhaLabel)
-						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+						.addComponent(senhaLabel))
+					.addGap(120)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(nomeLojaField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+						.addComponent(nomeLojaLabel)
+						.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -212,11 +221,13 @@ public class CreateAdmin implements ActionListener {
 					.addGap(68)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(emailLabel)
-						.addComponent(senhaLabel))
+						.addComponent(senhaLabel)
+						.addComponent(nomeLojaLabel, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE))
 					.addGap(6)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(nomeLojaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(86)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(criarAdministrador)
@@ -237,12 +248,13 @@ public class CreateAdmin implements ActionListener {
 			if (e.getSource() == criarAdministrador) {
 		        String nome = nomeField.getText();
 		        String email = emailField.getText();
-		        String senha = senhaField.getText();
+		        String senha = String.valueOf(senhaField.getPassword());
 		        String endereco = enderecoField.getText();
 		        String cidade = cidadeField.getText();
-		        String estado =estadoField.getText();
+		        String estado = estadoField.getText();
 		        String cep = cepField.getText();
 		        String bairro = bairroField.getText();
+		        Loja.setNome(nomeLojaField.getText());
 		        
 		        criarADM = verificarExistencia(nome,senha,email);
 		        
@@ -257,6 +269,8 @@ public class CreateAdmin implements ActionListener {
 					case 3:
 						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,senha);
 						isFirstTime = false;
+						Loja.getInstance();
+						Loja.preencherDatabase();
 						JOptionPane.showMessageDialog(null, "Administrador criado com sucesso!");
 						break;
 					case 4:

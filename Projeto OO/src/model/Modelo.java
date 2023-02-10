@@ -11,4 +11,20 @@ public class Modelo {
 		this.tipoVeiculo = tipoVeiculo;
 		this.marca = marca;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public TipoVeiculo getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+
 }

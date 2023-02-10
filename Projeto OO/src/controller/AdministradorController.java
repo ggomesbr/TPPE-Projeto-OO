@@ -57,6 +57,17 @@ public class AdministradorController {
 	    return adminFound;
 	}
 	
+	public boolean existeAdministrador(String email) {
+		
+		for (Administrador admin : this.database.getAdministradores()) {
+		      if (admin.getEmail().equals(email)) {
+		        return true;
+		        
+		      }
+		    }
+		    return false;
+	}
+	
 	  public boolean login(String email, String senha) {
 		    for (Administrador admin : this.database.getAdministradores()) {
 		      if (admin.getEmail().equals(email) && senha.equals(admin.getSenha())) {
