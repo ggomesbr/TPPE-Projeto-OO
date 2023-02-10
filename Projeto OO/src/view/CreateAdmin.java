@@ -27,7 +27,6 @@ public class CreateAdmin implements ActionListener {
 	private JLabel estadoLabel;
 	private JLabel cepLabel;
 	private JLabel bairroLabel;
-	private JLabel loginLabel;
 	private JLabel senhaLabel;
 	private JButton criarAdministrador;
 	private JTextField cidadeField;
@@ -35,7 +34,6 @@ public class CreateAdmin implements ActionListener {
 	private JTextField enderecoField;
 	private JTextField emailField;
 	private JTextField bairroField;
-	private JTextField loginField;
 	private JTextField senhaField;
 	private JTextField cepField;
 	private JButton voltarButton;
@@ -44,7 +42,7 @@ public class CreateAdmin implements ActionListener {
 	private int criarADM;
 	private JLabel obrigatoriedadeLabel;
 	private JLabel lblNewLabel;
-
+	boolean isFirstTime;
 
 	/**
 	 * Create the application.
@@ -55,7 +53,7 @@ public class CreateAdmin implements ActionListener {
 		VendedorController vendedorController = new VendedorController();
 		this.vendedorController = vendedorController;
 		
-		final boolean isFirstTime = administradorController.readAllAdmins().isEmpty();
+		 isFirstTime = administradorController.readAllAdmins().isEmpty();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
@@ -85,9 +83,6 @@ public class CreateAdmin implements ActionListener {
 		bairroLabel = new JLabel("Bairro");
 		bairroLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		loginLabel = new JLabel("Login*");
-		loginLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
 		senhaLabel = new JLabel("Senha*");
 		senhaLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
@@ -109,10 +104,7 @@ public class CreateAdmin implements ActionListener {
 		bairroField = new JTextField();
 		bairroField.setColumns(10);
 		
-		loginField = new JTextField();
-		loginField.setColumns(10);
-		
-		senhaField = new JPasswordField();
+		senhaField = new JTextField();
 		senhaField.setColumns(10);
 		
 		cepField = new JTextField();
@@ -176,24 +168,19 @@ public class CreateAdmin implements ActionListener {
 					.addGap(120)
 					.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(56)
-					.addComponent(emailLabel)
-					.addGap(220)
-					.addComponent(loginLabel)
-					.addGap(207)
-					.addComponent(senhaLabel))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(56)
-					.addComponent(emailField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-					.addGap(131)
-					.addComponent(loginField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-					.addGap(120)
-					.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(244)
 					.addComponent(criarAdministrador)
 					.addGap(18)
 					.addComponent(voltarButton))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(56)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(emailField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+						.addComponent(emailLabel))
+					.addGap(131)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(senhaLabel)
+						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -223,14 +210,12 @@ public class CreateAdmin implements ActionListener {
 						.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(68)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(emailLabel)
-						.addComponent(loginLabel)
 						.addComponent(senhaLabel))
 					.addGap(6)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(loginField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(senhaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(86)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
@@ -252,7 +237,6 @@ public class CreateAdmin implements ActionListener {
 			if (e.getSource() == criarAdministrador) {
 		        String nome = nomeField.getText();
 		        String email = emailField.getText();
-		        String login = String.valueOf(senhaField.getText());
 		        String senha = senhaField.getText();
 		        String endereco = enderecoField.getText();
 		        String cidade = cidadeField.getText();
@@ -260,7 +244,7 @@ public class CreateAdmin implements ActionListener {
 		        String cep = cepField.getText();
 		        String bairro = bairroField.getText();
 		        
-		        criarADM = verificarExistencia(nome,login,senha,email);
+		        criarADM = verificarExistencia(nome,senha,email);
 		        
 
 		        switch (criarADM) {
@@ -271,7 +255,8 @@ public class CreateAdmin implements ActionListener {
 						JOptionPane.showMessageDialog(null, "Vendedor já existe!");
 						break;
 					case 3:
-						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,login,senha);
+						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,senha);
+						isFirstTime = false;
 						JOptionPane.showMessageDialog(null, "Administrador criado com sucesso!");
 						break;
 					case 4:
@@ -288,7 +273,7 @@ public class CreateAdmin implements ActionListener {
 			
 		}
 	
-	public int verificarExistencia(String nome, String login, String senha, String email) {
+	public int verificarExistencia(String nome, String senha, String email) {
         for (int i = 0; i < administradorController.readAllAdmins().size(); i++) {
         	if(email.equalsIgnoreCase(administradorController.readAllAdmins().get(i).getEmail())) {
         		return 1;
@@ -300,7 +285,7 @@ public class CreateAdmin implements ActionListener {
         		return 2;
         	}
         }
-        if(nome.trim().isEmpty() || email.trim().isEmpty() || login.trim().isEmpty() || senha.trim().isEmpty()) {
+        if(nome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
         	return 4;
         }
         

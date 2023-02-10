@@ -48,7 +48,7 @@ public class Loja {
 	public void calcularFaturamento() {
 		double faturamento = 0 ;
 		for (int i = 0; i < vendas.size(); i++) {
-			faturamento += vendas[i].valorTotal - vendas[i].comissao;
+			faturamento += vendas.get(i).getValorTotal() - vendas.get(i).getComissao();
 			
 		}
 		this.faturamento = faturamento;
