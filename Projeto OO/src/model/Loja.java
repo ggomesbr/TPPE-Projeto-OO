@@ -56,9 +56,9 @@ public class Loja {
 		// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep,
 		// bairro, nome, login, senha, valorVendas, totalComissao));
 
-		instance.vendedores.add(new Vendedor("t", "endereco", "cidade", "estado", "cep", "bairro", "t", "t", 0, 0));
+		instance.vendedores.add(new Vendedor("t", "endereco", "cidade", "estado", "cep", "bairro", "Mateus Vieira", "t", 0, 0, "61xxxxxxxxx"));
 		instance.administradores.add(new Administrador("anamelo@gmail.com", "rua dos bobos numero 0", "gama city", "DF",
-				"77400000", "Ponte alta", "Ana Melo", "123"));
+				"77400000", "Ponte alta", "Ana Melo", "123", "61xxxxxxxxxx"));
 
 		// instancia marcas
 		instance.marcas.add(new Marca("Toyota"));
@@ -79,6 +79,12 @@ public class Loja {
 				instance.automoveis.add(new Automovel(Cor.Preto, 4, "Gasolina", UUID.randomUUID().toString(),
 						(20000 * (i + 1)), "2023", instance.modelos.get(0), marca));
 			}
+		}
+
+		for (int index = 0; index < 15; index++) {
+			instance.clientes.add(new Cliente("@gmail.com", "rua dos bobos numero 0", "gama city",
+					"DF", "77400000", "Ponte alta", index, "123", "61xxxxxxxxxx"));
+		
 		}
 		
 	}

@@ -43,8 +43,8 @@ public class ListarAutomoveisController {
 	}
 	
 	public void removerAutomovel(JScrollPane scroll) {
-		var view = ((JTable)scroll.getViewport().getView());
-		var linha = view.getSelectedRow();
+		JTable view = ((JTable)scroll.getViewport().getView());
+		int linha = view.getSelectedRow();
 		if(linha > -1) {
 			this.database.getAutomoveis().remove(getAutomovel(view.getValueAt(linha, 3).toString()));
 		}else {
@@ -54,11 +54,14 @@ public class ListarAutomoveisController {
 	}
 	
 	public void editarAutomovel(JScrollPane scroll,float novoValor) {
-		var view = ((JTable)scroll.getViewport().getView());
-		var linha = view.getSelectedRow();
+		JTable view = ((JTable)scroll.getViewport().getView());
+		int linha = view.getSelectedRow();
 		if(linha > -1) {
 			Automovel automovel = getAutomovel(view.getValueAt(linha, 3).toString());
 			automovel.setValor(novoValor);
+
+		 	String[] header = { "Marca", "Modelo", "Ano", "Chassi", "Cor", "Valor" };
+			scroll.setViewportView(new JTable(generateTable(header)));
 		}else {
 			JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "Selecione algum carro antes!!");

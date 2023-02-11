@@ -19,38 +19,37 @@ public class ListarAutomoveis extends JFrame implements ActionListener {
 	private JButton btnRemove = new JButton("Remover");
 	private String[] header = { "Marca", "Modelo", "Ano", "Chassi", "Cor", "Valor" };
 	private ListarAutomoveisController controller = new ListarAutomoveisController();
-	
+
 	public ListarAutomoveis() {
 		setTitle("Listar Automóveis");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(800,600);
+		setSize(800, 600);
 		setLocationRelativeTo(null);
 		setLayout(null);
-		
+
 		add(btnRemove);
-		btnRemove.setBounds(10,5,150,20);
+		btnRemove.setBounds(10, 5, 150, 20);
 		btnRemove.addActionListener(this);
-		
+
 		add(btnUpdate);
-		btnUpdate.setBounds(170,5,150,20);
+		btnUpdate.setBounds(170, 5, 150, 20);
 		btnUpdate.addActionListener(this);
-		
-        scroll.setViewportView(
-                new JTable(this.controller.generateTable(header)));
-        add(scroll);
-        scroll.setBounds(0, 30, 800, 520);
+
+		scroll.setViewportView(
+				new JTable(this.controller.generateTable(header)));
+		add(scroll);
+		scroll.setBounds(0, 30, 800, 520);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource()==this.btnRemove) {
+		if (e.getSource() == this.btnRemove) {
 			this.controller.removerAutomovel(scroll);
-	        scroll.setViewportView(
-	                new JTable(this.controller.generateTable(header)));
-		}else if(e.getSource()==this.btnUpdate){
-			//fazer o botao
+			scroll.setViewportView(
+					new JTable(this.controller.generateTable(header)));
+		} else if (e.getSource() == this.btnUpdate) {
+			new EditarAutomovelView(scroll);
 		}
 	}
 

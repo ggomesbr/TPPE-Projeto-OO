@@ -274,6 +274,9 @@ public class CreateAdmin implements ActionListener {
 						Loja.getInstance();
 						Loja.preencherDatabase();
 						JOptionPane.showMessageDialog(null, "Administrador criado com sucesso!");
+						LoginView loginView = new LoginView();
+						loginView.getFrame().setVisible(true);
+						frame.dispose();
 						break;
 					case 4:
 						JOptionPane.showMessageDialog(null, "Preencha todos os dados!");

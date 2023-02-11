@@ -66,8 +66,8 @@ public class AdministradorView {
 		btnVendedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				VendedoresView admVendedoresView = new VendedoresView();
-				admVendedoresView.getFrame().setVisible(true);
+				VendedoresView vendedoresView = new VendedoresView();
+				vendedoresView.getFrame().setVisible(true);
 				frame.dispose();
 			}
 		});

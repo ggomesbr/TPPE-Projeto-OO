@@ -13,6 +13,7 @@ public class Venda {
 	private String descricao;
 	private StatusVenda status;
 	private static final double TAXA_PARCELA = 0.10;
+	private Cliente cliente;
 	
 	public Venda(Date dataPedido, Date dataEntrega, double valor, String tipoPagamento, int qntdParcelas,
 			String descricao, int id) {
