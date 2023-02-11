@@ -56,7 +56,7 @@ public class Loja {
 		// instance.vendedores.add(new Admin(email, endereco, cidade,estado, cep,
 		// bairro, nome, login, senha, valorVendas, totalComissao));
 
-		instance.vendedores.add(new Vendedor("t", "endereco", "cidade", "estado", "cep", "bairro", "Mateus Vieira", "t", 0, 0, "61xxxxxxxxx"));
+		instance.vendedores.add(new Vendedor("emmanuelbarros@gmail.com", "rua dos bobos numero 0", "gurupi","TO", "77400000","centro", "Emmanuel Barros","123", 0,0,"61xxxxxxxx"));
 		instance.administradores.add(new Administrador("anamelo@gmail.com", "rua dos bobos numero 0", "gama city", "DF",
 				"77400000", "Ponte alta", "Ana Melo", "123", "61xxxxxxxxxx"));
 
