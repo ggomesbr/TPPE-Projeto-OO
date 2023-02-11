@@ -19,8 +19,8 @@ public class VendedorController {
 	// se der tempo fazer verificações 
 	
 	public void createVendedor(String email, String endereco, String cidade, String estado, String cep, String bairro, String nome,
-			String login, String senha) {
-		Vendedor vendedor = new Vendedor(email,endereco,cidade,estado,cep,bairro,nome,senha,0,0);
+			String login, String senha,String telefone) {
+		Vendedor vendedor = new Vendedor(email,endereco,cidade,estado,cep,bairro,nome,senha,0,0,telefone);
 		this.database.getVendedores().add(vendedor);
 	}
 	

@@ -38,6 +38,7 @@ public class MainView implements ActionListener {
 	
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 
 		nomeLoja = new JLabel("Seja Bem vindo(a) !!");

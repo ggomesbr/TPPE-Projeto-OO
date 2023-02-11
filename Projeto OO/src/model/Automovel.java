@@ -84,6 +84,7 @@ public class Automovel {
 		this.marca = marca;
 	}
 
+	private float valor_fabrica;
 	private String ano_fabricado;
 	private Modelo modelo;
 	private Marca marca;

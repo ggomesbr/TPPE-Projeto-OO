@@ -1,23 +1,20 @@
 package view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
-import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JPasswordField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class CreateFuncionario {
+public class CreateVendedor {
 
-	private JFrame CreateFuncionario;
+	private JFrame frame;
 	private JTextField cidadeField;
 	private JTextField emailFieldd;
 	private JTextField cepField;
@@ -32,7 +29,7 @@ public class CreateFuncionario {
 	/**
 	 * Create the application.
 	 */
-	public CreateFuncionario() {
+	public CreateVendedor() {
 		initialize();
 	}
 
@@ -40,15 +37,16 @@ public class CreateFuncionario {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		CreateFuncionario = new JFrame();
-		CreateFuncionario.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		CreateFuncionario.setResizable(false);
-		CreateFuncionario.setTitle("CRIAR VENDEDOR");
-		CreateFuncionario.setBounds(100, 100, 376, 392);
-		CreateFuncionario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame();
+		frame.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		frame.setResizable(false);
+		frame.setTitle("CRIAR VENDEDOR");
+		frame.setBounds(100, 100, 376, 392);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		CreateFuncionario.getContentPane().add(panel, BorderLayout.WEST);
+		frame.getContentPane().add(panel, BorderLayout.WEST);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{104, 85, 162, 0};
 		gbl_panel.rowHeights = new int[]{54, 20, 20, 20, 20, 20, 20, 20, 20, 23, 0, 0, 0};
@@ -240,7 +238,7 @@ public class CreateFuncionario {
 	}
 	
 	public JFrame getFrame() {
-	    return CreateFuncionario;
+	    return frame;
 	  }
 
 }

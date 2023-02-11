@@ -17,14 +17,14 @@ import java.awt.event.ActionListener;
 
 public class AdministradorView {
 
-	private JFrame frmTelaDeAdministrador;
+	private JFrame frame;
 
 
 	/**
 	 * Create the application.
 	 * @param administrador 
 	 */
-	public AdministradorView(Administrador administrador) {
+	public AdministradorView() {
 		initialize();
 	}
 
@@ -32,13 +32,14 @@ public class AdministradorView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmTelaDeAdministrador = new JFrame();
-		frmTelaDeAdministrador.setTitle("TELA DE ADMINISTRADOR");
-		frmTelaDeAdministrador.setBounds(100, 100, 450, 300);
-		frmTelaDeAdministrador.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame();
+		frame.setTitle("TELA DE ADMINISTRADOR");
+		frame.setBounds(100, 100, 450, 300);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		frmTelaDeAdministrador.getContentPane().add(panel, BorderLayout.CENTER);
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{89, 0, 89, 0};
 		gbl_panel.rowHeights = new int[]{0, 23, 0, 0, 0};
@@ -51,7 +52,7 @@ public class AdministradorView {
 			public void actionPerformed(ActionEvent e) {
 				AutomovelView automovelView = new AutomovelView();
 				automovelView.getFrame().setVisible(true);
-				frmTelaDeAdministrador.dispose();
+				frame.dispose();
 			}
 		});
 		
@@ -65,9 +66,9 @@ public class AdministradorView {
 		btnVendedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AdmVendedoresView admVendedoresView = new AdmVendedoresView();
+				VendedoresView admVendedoresView = new VendedoresView();
 				admVendedoresView.getFrame().setVisible(true);
-				frmTelaDeAdministrador.dispose();
+				frame.dispose();
 			}
 		});
 		
@@ -82,7 +83,7 @@ public class AdministradorView {
 			public void actionPerformed(ActionEvent e) {
 				LoginView loginView = new LoginView();
 				loginView.getFrame().setVisible(true);
-				frmTelaDeAdministrador.dispose();
+				frame.dispose();
 			}
 		});
 		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
@@ -93,12 +94,12 @@ public class AdministradorView {
 	}
 	
 	public JFrame getFrame() {
-	    return frmTelaDeAdministrador;
+	    return frame;
 	  }
 	
 	public static void main(String[] args) {
-		AdministradorView window = new AdministradorView(null);
-		window.frmTelaDeAdministrador.setVisible(true);
+		AdministradorView window = new AdministradorView();
+		window.frame.setVisible(true);
 		
 
 	}

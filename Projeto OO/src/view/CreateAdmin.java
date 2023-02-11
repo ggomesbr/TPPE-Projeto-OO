@@ -56,10 +56,11 @@ public class CreateAdmin implements ActionListener {
 		VendedorController vendedorController = new VendedorController();
 		this.vendedorController = vendedorController;
 		
-		 isFirstTime = administradorController.readAllAdmins().isEmpty();
+		isFirstTime = administradorController.readAllAdmins().isEmpty();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		nomeField = new JTextField();
@@ -254,6 +255,7 @@ public class CreateAdmin implements ActionListener {
 		        String estado = estadoField.getText();
 		        String cep = cepField.getText();
 		        String bairro = bairroField.getText();
+		        String telefone = "619XXXXXXXX";
 		        Loja.setNome(nomeLojaField.getText());
 		        
 		        criarADM = verificarExistencia(nome,senha,email);
@@ -267,7 +269,7 @@ public class CreateAdmin implements ActionListener {
 						JOptionPane.showMessageDialog(null, "Vendedor já existe!");
 						break;
 					case 3:
-						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,senha);
+						administradorController.createAdmin(email,endereco,cidade,estado,cep,bairro,nome,senha,telefone);
 						isFirstTime = false;
 						Loja.getInstance();
 						Loja.preencherDatabase();

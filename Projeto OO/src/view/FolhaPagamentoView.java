@@ -30,7 +30,7 @@ import javax.swing.JButton;
 
 public class FolhaPagamentoView {
 
-	private JFrame frmFolhaDePagamento;
+	private JFrame frame;
 	private JTextField CampoComissao;
 	private JTextField CampoValorBruto;
 	private JTextField CampoSalarioBruto;
@@ -40,20 +40,21 @@ public class FolhaPagamentoView {
 	/**
 	 * Create the application.
 	 */
-	public FolhaPagamentoView(Vendedor vendedor) {
-		frmFolhaDePagamento = new JFrame();
-		frmFolhaDePagamento.getContentPane().setBackground(Color.GRAY);
-		frmFolhaDePagamento.setTitle("FOLHA DE PAGAMENTO");
-		frmFolhaDePagamento.setForeground(Color.WHITE);
-		frmFolhaDePagamento.setIconImage(
+	public FolhaPagamentoView(final Vendedor vendedor) {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.GRAY);
+		frame.setTitle("FOLHA DE PAGAMENTO");
+		frame.setForeground(Color.WHITE);
+		frame.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(FolhaPagamentoView.class.getResource("/imgs/car.png")));
-		frmFolhaDePagamento.setBounds(100, 100, 707, 448);
-		frmFolhaDePagamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 707, 448);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Panel panel = new Panel();
 		panel.setName("PanelPagamento");
 		panel.setBackground(new Color(0, 206, 209));
-		frmFolhaDePagamento.getContentPane().add(panel, BorderLayout.CENTER);
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		SpringLayout sl_panel = new SpringLayout();
 		panel.setLayout(sl_panel);
 
@@ -113,7 +114,7 @@ public class FolhaPagamentoView {
 			public void actionPerformed(ActionEvent e) {
 				VendedorView vendedorView = new VendedorView(vendedor);
 				vendedorView.getFrame().setVisible(true);
-				frmFolhaDePagamento.dispose();
+				frame.dispose();
 			}
 		});
 		sl_panel.putConstraint(SpringLayout.SOUTH, btnVoltar, -10, SpringLayout.SOUTH, panel);
@@ -123,6 +124,6 @@ public class FolhaPagamentoView {
 	}
 
 	public JFrame getFrame() {
-		return frmFolhaDePagamento;
+		return frame;
 	}
 }

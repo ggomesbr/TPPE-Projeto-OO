@@ -10,9 +10,9 @@ public class Cliente extends Pessoa {
 	// construtor
 	
 	public Cliente(String email, String endereco, String cidade, String estado, String cep, String bairro, int id, 
-			String complemento, ArrayList<Automovel> veiculos_comprados) {
+			String complemento, ArrayList<Automovel> veiculos_comprados, String telefone) {
 		
-		super(email, endereco, cidade, estado, cep, bairro);
+		super(email, endereco, cidade, estado, cep, bairro, telefone);
 		this.id = id;
 		this.complemento = complemento;
 		this.veiculos_comprados = veiculos_comprados;

@@ -9,10 +9,11 @@ public class Pessoa {
 	private String estado;
 	private String cep;
 	private String bairro;
+	private String telefone;
 	
 	// construtor
 	
-	public Pessoa(String email, String endereco, String cidade, String estado, String cep, String bairro) {
+	public Pessoa(String email, String endereco, String cidade, String estado, String cep, String bairro, String telefone) {
 		super();
 		this.email = email;
 		this.endereco = endereco;
@@ -20,6 +21,7 @@ public class Pessoa {
 		this.estado = estado;
 		this.cep = cep;
 		this.bairro = bairro;
+		this.telefone = telefone;
 	}
 	
 	// getters and setters
@@ -70,5 +72,13 @@ public class Pessoa {
 	
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 }

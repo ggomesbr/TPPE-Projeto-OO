@@ -10,8 +10,8 @@ public class PessoaJuridica extends Pessoa {
 	
 	// construtor
 	public PessoaJuridica(String email, String endereco, String cidade, String estado, String cep, String bairro, String cnpj,String razaoSocial, String inscricaoEstadual,
-			String inscricaoMunincipal) {
-		super(email, endereco, cidade, estado, cep, bairro);
+			String inscricaoMunincipal, String telefone) {
+		super(email, endereco, cidade, estado, cep, bairro, telefone);
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
 		this.inscricaoEstadual = inscricaoEstadual;

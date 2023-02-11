@@ -142,7 +142,7 @@ public class LoginView implements ActionListener {
 	  }
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == criarContaButton) {
-			CreateFuncionario funcionario = new CreateFuncionario();
+			CreateVendedor funcionario = new CreateVendedor();
 			funcionario.getFrame().setVisible(true);
 			frame.dispose();
 		}
@@ -174,7 +174,7 @@ public class LoginView implements ActionListener {
 				if(administradorController.existeAdministrador(email)) {
 					if(this.administrador.getEmail().equals(email)  && this.administrador.getSenha().equals(senha)) {
 						JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
-						AdministradorView administrador = new AdministradorView(this.administrador);
+						AdministradorView administrador = new AdministradorView();
 						administrador.getFrame().setVisible(true);
 						frame.dispose();
 					}
