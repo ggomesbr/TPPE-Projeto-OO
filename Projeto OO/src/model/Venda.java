@@ -44,7 +44,8 @@ public class Venda {
 	}
 	
 	public double calcularComissao() {
-		return 0;
+		
+		return valor*0.02;
 	}
 
 	public int getId() {

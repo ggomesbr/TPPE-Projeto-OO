@@ -51,7 +51,7 @@ public class FolhaPagamento {
 
 	public float calcularSalarioLiquido(float valorBruto, float valorLiquido, float comissao, float descontoSalario) {
 		valorLiquido = (valorBruto + comissao) - descontoSalario;
-		return 0;
+		return valorLiquido;
 	}
 
 }

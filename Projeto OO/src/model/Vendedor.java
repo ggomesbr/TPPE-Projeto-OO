@@ -39,6 +39,7 @@ public class Vendedor extends Usuario {
 	}
 
 	public float calcularTotalComissao() {
+		//Veiculo.valor * 0.02
 		return 0;
 	}
 

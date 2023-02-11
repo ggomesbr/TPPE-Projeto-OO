@@ -43,7 +43,7 @@ public class AutomovelView {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JButton btnCriarAuto = new JButton("Criar Automóvel");
+		JButton btnCriarAuto = new JButton("Cadastrar Automóvel");
 		GridBagConstraints gbc_btnCriarAuto = new GridBagConstraints();
 		gbc_btnCriarAuto.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCriarAuto.anchor = GridBagConstraints.NORTH;
@@ -51,15 +51,6 @@ public class AutomovelView {
 		gbc_btnCriarAuto.gridx = 1;
 		gbc_btnCriarAuto.gridy = 3;
 		panel.add(btnCriarAuto, gbc_btnCriarAuto);
-		
-		JButton btnNewButton_2 = new JButton("Editar Automóvel");
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_2.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 1;
-		gbc_btnNewButton_2.gridy = 4;
-		panel.add(btnNewButton_2, gbc_btnNewButton_2);
 		
 		JButton btnBuscarAuto = new JButton("Visualizar Automóveis");
 		GridBagConstraints gbc_btnBuscarAuto = new GridBagConstraints();
@@ -69,15 +60,15 @@ public class AutomovelView {
 		gbc_btnBuscarAuto.gridx = 1;
 		gbc_btnBuscarAuto.gridy = 5;
 		panel.add(btnBuscarAuto, gbc_btnBuscarAuto);
-		
-		JButton btnNewButton_3 = new JButton("Remover Automóvel");
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_3.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButton_3.gridx = 1;
-		gbc_btnNewButton_3.gridy = 6;
-		panel.add(btnNewButton_3, gbc_btnNewButton_3);
+		btnBuscarAuto.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new ListarAutomoveis().setVisible(true);
+				
+			}
+		});
 		
 		JButton btnVoltar = new JButton("Voltar");
 		GridBagConstraints gbc_btnVoltar = new GridBagConstraints();
@@ -86,6 +77,8 @@ public class AutomovelView {
 		gbc_btnVoltar.gridx = 1;
 		gbc_btnVoltar.gridy = 7;
 		panel.add(btnVoltar, gbc_btnVoltar);
+		
+		
 	}
 
 
