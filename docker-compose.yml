@@ -1,15 +1,16 @@
-version: '3.8'
-
 services:
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://user:password@db:13306/app_db
+      - DATABASE_URL=mysql+pymysql://user:password@db:3306/app_db
+      - POPULATE_DB=1
     depends_on:
       db:
         condition: service_healthy
+      tests:
+        condition: service_completed_successfully
     volumes:
       - ./backend:/app
 
@@ -21,7 +22,7 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
     ports:
-      - "13306:13306"
+      - "13306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -35,12 +36,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile.test
     environment:
-      - DATABASE_URL=mysql+pymysql://user:password@db:13306/app_db
+      - DATABASE_URL=mysql+pymysql://user:password@db:3306/app_db
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./backend:/app
+    restart: "no"
 
 volumes:
-  mysql_data: 
+  mysql_data:

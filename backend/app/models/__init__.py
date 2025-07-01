@@ -1,1 +1,1 @@
-from .models import Pessoa, Cliente, Usuario 
+from .models import Pessoa, Cliente, Vendedor 
