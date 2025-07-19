@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI, Depends
 from .database import engine, Base, get_db
 from . import models
@@ -6,10 +7,16 @@ import logging
 import os
 import time
 from sqlalchemy.exc import OperationalError
+from app.pessoa.router_pessoa import router as pessoa_router
+from app.vendedor.router_vendedor import router as vendedor_router
 
 app = FastAPI(
     title="API Hello World"
 )
+
+# Register routers for main entities
+app.include_router(pessoa_router, prefix="/pessoas", tags=["pessoas"])
+app.include_router(vendedor_router, prefix="/vendedores", tags=["vendedores"])
 
 def wait_for_db(max_retries=30, delay=2):
     """Aguarda o banco de dados ficar disponível"""

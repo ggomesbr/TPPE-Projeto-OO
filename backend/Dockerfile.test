@@ -1,10 +1,12 @@
+
 FROM python:3.9-slim
 
-WORKDIR /app
+ENV PYTHONPATH=/code
+WORKDIR /code
+
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
 
-CMD ["pytest", "-v", "app/tests/"] 
+CMD ["sh", "-c", "echo PYTHONPATH=$PYTHONPATH; echo '---'; ls -l /code; echo '---'; ls -l /code/app; echo '---'; pytest -v app/loja/ app/marca/ app/modelo/ app/pessoa/ app/venda/ app/vendedor/"]
